@@ -3,15 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
- "scripts": {
-  "dev": "vite",                      
-  "dev:full": "concurrently \"npm run server\" \"npm run dev\"",  
-  "server": "node src/server/server.js", 
-  "build": "vite build",                
-  "lint": "eslint .",                    
-  "preview": "vite preview"             
-}
-,
+  "scripts": {
+    "dev": "vite",
+    "dev:full": "concurrently \"npm run server\" \"npm run dev\"",
+    "server": "node src/server/server.js",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+     "start": "node src/server/server.js"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.55.0",
     "axios": "^1.11.0",

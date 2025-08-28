@@ -13,9 +13,10 @@ const app = express();
 // Serve frontend
 app.use(express.static(path.join(__dirname, "../dist")));
 
-app.get("/.*/", (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
+
 dotenv.config();
 
 app.use(cors({
@@ -220,5 +221,7 @@ app.get('/api/patients/:id', (req, res) => {
   });
 });
 
-app.listen(5000, () => console.log('🚀 Server running on port 5000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 

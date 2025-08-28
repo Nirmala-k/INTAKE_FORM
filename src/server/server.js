@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Serve frontend
-app.use(express.static(path.join(__dirname, "./")));
+app.use(express.static(path.join(__dirname, "./src")));
 
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));

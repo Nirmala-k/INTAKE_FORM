@@ -13,7 +13,7 @@ const app = express();
 // Serve frontend
 app.use(express.static(path.join(__dirname, "../dist")));
 
-app.get("*", (req, res) => {
+app.get("/.*/", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 dotenv.config();
@@ -40,75 +40,75 @@ db.connect(err => {
 /**
  * Update schema to add all fields from Patient type
  */
-const updateSchema = () => {
-  const alterTableSQL = `
-    ALTER TABLE patient_records 
-    ADD COLUMN date_of_sample_collection DATE,
-    ADD COLUMN referral_doctor VARCHAR(255),
-    ADD COLUMN pre_counselor VARCHAR(255),
-    ADD COLUMN address TEXT,
+// const updateSchema = () => {
+//   const alterTableSQL = `
+//     ALTER TABLE patient_records 
+//     ADD COLUMN date_of_sample_collection DATE,
+//     ADD COLUMN referral_doctor VARCHAR(255),
+//     ADD COLUMN pre_counselor VARCHAR(255),
+//     ADD COLUMN address TEXT,
 
-    ADD COLUMN test_names JSON,
-    ADD COLUMN other_test TEXT,
-    ADD COLUMN indications_for_testing TEXT,
-    ADD COLUMN specific_genes TEXT,
-    ADD COLUMN sample_types JSON,
-    ADD COLUMN other_sample TEXT,
+//     ADD COLUMN test_names JSON,
+//     ADD COLUMN other_test TEXT,
+//     ADD COLUMN indications_for_testing TEXT,
+//     ADD COLUMN specific_genes TEXT,
+//     ADD COLUMN sample_types JSON,
+//     ADD COLUMN other_sample TEXT,
 
-    ADD COLUMN complaints JSON,
-    ADD COLUMN genetic_testing_reasons JSON,
+//     ADD COLUMN complaints JSON,
+//     ADD COLUMN genetic_testing_reasons JSON,
 
-    ADD COLUMN past_medical_history JSON,
-    ADD COLUMN past_surgical_history JSON,
+//     ADD COLUMN past_medical_history JSON,
+//     ADD COLUMN past_surgical_history JSON,
 
-    ADD COLUMN family_history JSON,
-    ADD COLUMN consanguineous_marriage BOOLEAN DEFAULT FALSE,
+//     ADD COLUMN family_history JSON,
+//     ADD COLUMN consanguineous_marriage BOOLEAN DEFAULT FALSE,
 
-    ADD COLUMN mental_health_history JSON,
-    ADD COLUMN menstrual_cycles TEXT,
-    ADD COLUMN infertility_history TEXT,
-    ADD COLUMN erectile_dysfunction TEXT,
+//     ADD COLUMN mental_health_history JSON,
+//     ADD COLUMN menstrual_cycles TEXT,
+//     ADD COLUMN infertility_history TEXT,
+//     ADD COLUMN erectile_dysfunction TEXT,
 
-    ADD COLUMN medicines JSON,
-    ADD COLUMN review_of_systems JSON,
-    ADD COLUMN expandedSystems JSON,
-    ADD COLUMN alcohol TEXT,
-    ADD COLUMN smoking TEXT,
-    ADD COLUMN wake_up_time TEXT,
-    ADD COLUMN bed_time TEXT,
-    ADD COLUMN workout TEXT,
-    ADD COLUMN workout_frequency TEXT,
-    ADD COLUMN active_sport_young TEXT,
-    ADD COLUMN sleep TEXT,
-    ADD COLUMN preferred_workout TEXT,
-    ADD COLUMN meals_per_day TEXT,
-    ADD COLUMN processed_foods TEXT,
-    ADD COLUMN outside_food TEXT,
-    ADD COLUMN carbonated_drinks TEXT,
-    ADD COLUMN cuisine_preference JSON,
-    ADD COLUMN other_cuisine_preference TEXT,
+//     ADD COLUMN medicines JSON,
+//     ADD COLUMN review_of_systems JSON,
+//     ADD COLUMN expandedSystems JSON,
+//     ADD COLUMN alcohol TEXT,
+//     ADD COLUMN smoking TEXT,
+//     ADD COLUMN wake_up_time TEXT,
+//     ADD COLUMN bed_time TEXT,
+//     ADD COLUMN workout TEXT,
+//     ADD COLUMN workout_frequency TEXT,
+//     ADD COLUMN active_sport_young TEXT,
+//     ADD COLUMN sleep TEXT,
+//     ADD COLUMN preferred_workout TEXT,
+//     ADD COLUMN meals_per_day TEXT,
+//     ADD COLUMN processed_foods TEXT,
+//     ADD COLUMN outside_food TEXT,
+//     ADD COLUMN carbonated_drinks TEXT,
+//     ADD COLUMN cuisine_preference JSON,
+//     ADD COLUMN other_cuisine_preference TEXT,
 
-    ADD COLUMN blood_pressure VARCHAR(50),
-    ADD COLUMN pulse_rate VARCHAR(50),
-    ADD COLUMN height VARCHAR(50),
-    ADD COLUMN weight VARCHAR(50),
-    ADD COLUMN BMI VARCHAR(50),
+//     ADD COLUMN blood_pressure VARCHAR(50),
+//     ADD COLUMN pulse_rate VARCHAR(50),
+//     ADD COLUMN height VARCHAR(50),
+//     ADD COLUMN weight VARCHAR(50),
+//     ADD COLUMN BMI VARCHAR(50),
 
-    ADD COLUMN mandatory_tests JSON,
-    ADD COLUMN dosha_v JSON,
-    ADD COLUMN dosha_p JSON,
-    ADD COLUMN dosha_k JSON
-  `;
+//     ADD COLUMN mandatory_tests JSON,
+//     ADD COLUMN dosha_v JSON,
+//     ADD COLUMN dosha_p JSON,
+//     ADD COLUMN dosha_k JSON
+//   `;
 
-  db.query(alterTableSQL, (err) => {
-    if (err) {
-      console.log('⚠️ Schema update failed (old MySQL may not support):', err.message);
-    } else {
-      console.log('✅ Table schema updated successfully');
-    }
-  });
-};
-updateSchema();
+//   db.query(alterTableSQL, (err) => {
+//     if (err) {
+//       console.log('⚠️ Schema update failed (old MySQL may not support):', err.message);
+//     } else {
+//       console.log('✅ Table schema updated successfully');
+//     }
+//   });
+// };
+// updateSchema();
 
 /**
  * Fetch all patients
@@ -221,3 +221,4 @@ app.get('/api/patients/:id', (req, res) => {
 });
 
 app.listen(5000, () => console.log('🚀 Server running on port 5000'));
+

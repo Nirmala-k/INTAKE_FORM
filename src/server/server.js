@@ -11,10 +11,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Serve frontend
-app.use(express.static(path.join(__dirname, "../src")));
+app.use(express.static(path.join(__dirname, "./")));
 
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../src/index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 dotenv.config();
@@ -223,6 +223,7 @@ app.get('/api/patients/:id', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
 
 
 
